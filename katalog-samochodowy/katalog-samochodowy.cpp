@@ -4,7 +4,7 @@
 #include <fstream>
 #include <windows.h>
 #include <conio.h>
-#include "katalog-samochodowy.h"
+#include <algorithm>
 
 class Pojazd
 {
@@ -31,6 +31,16 @@ public:
 			std::cout << std::left << typSkrzyniBiegow << std::endl;
 			
 		}
+		//DEFINICJE SORTOWANIA
+		static bool poMarce(Pojazd & A, Pojazd & B) 
+		{
+			return A.marka < B.marka;
+		}
+		static bool poModelu(Pojazd & A, Pojazd & B)
+		{
+			return A.model < B.model;
+		}
+		static bool poRoczniku(Pojazd  )
 };
 
 std::vector <Pojazd> rejestr;
@@ -140,6 +150,57 @@ void UsuwanieSamochodu()
 	system("pause");
 }
 
+void DodajNowySamochod()
+{
+	Pojazd nowyPojazd;
+	system("cls");
+	std::cout << "Dodwanie nowego samochodu" << std::endl;
+	std::cout << "Marka: ";
+	std::cin >> nowyPojazd.marka;
+	std::cout << "Model: ";
+	std::cin >> nowyPojazd.model;
+	std::cout << "Pojemnosc: ";
+	std::cin >> nowyPojazd.pojemnosc;
+	std::cout << "Przebieg: ";
+	std::cin >> nowyPojazd.przebieg;
+	std::cout << "Rocznik: ";
+	std::cin >> nowyPojazd.rocznik;
+	std::cout << "Typ skrzyni biegow (A/M): ";
+	std::cin >> nowyPojazd.typSkrzyniBiegow;
+	rejestr.push_back(nowyPojazd);
+	std::cout << "Wczytano prawidlowo pojazd" << std::endl;
+	system("pause");
+}
+
+void SortowaniePoWybranymElemencie() 
+{
+	system("cls");
+	std::cout << "Wybierz parametr wedlug ktorego chcesz posortowac dane:" << std::endl;
+	std::cout << "1. Marka" << std::endl;
+	std::cout << "2. Model" << std::endl;
+	std::cout << "3. Pojemnosc" << std::endl;
+	std::cout << "4. Przebieg" << std::endl;
+	std::cout << "5. Rocznik" << std::endl;
+	std::cout << "6. Typ skrzyni biegow" << std::endl;
+	int parametr;
+	std::cin >> parametr;
+	system("cls");
+	switch (parametr)
+	{
+	case 1:
+		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poMarce);
+		std::cout << "Posortowano" << std::endl;
+		break;
+	default:
+		std::cout << "Nieprawidlowo wybrano parametr";
+		break;
+	}
+	system("pause");
+
+
+
+}
+
 int main()
 {
 	bool on = true;
@@ -152,6 +213,8 @@ int main()
 		std::cout << "3. Wypisz zawartosc rejestru" << std::endl;
 		std::cout << "4. Wypisz dane konkretnego pojazdu" << std::endl;
 		std::cout << "5. Usun samochod z rejestru" << std::endl;
+		std::cout << "6. Dodaj samochod do rejestru" << std::endl;
+		std::cout << "7. Sortuj wedlug wybranego parametru" << std::endl;
 		std::cout << "ESC. Wyjscie" << std::endl;
 		int numerOperacji = _getch();
 		switch (numerOperacji)
@@ -170,6 +233,12 @@ int main()
 			break;
 		case '5':
 			UsuwanieSamochodu();
+			break;
+		case '6':
+			DodajNowySamochod();
+			break;
+		case '7':
+			SortowaniePoWybranymElemencie();
 			break;
 		case 27:
 			on = false;
