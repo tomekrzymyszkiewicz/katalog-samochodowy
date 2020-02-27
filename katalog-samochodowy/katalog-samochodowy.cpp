@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <algorithm>
+#include <sstream>
 
 class Pojazd
 {
@@ -235,6 +236,331 @@ void SortowaniePoWybranymElemencie()
 
 }
 
+void WyswietlanieWarunkowe()
+{
+	system("cls");
+	std::cout << "Wybierz parametr wedlug ktorego chcesz wyswietlac:" << std::endl;
+	std::cout << "1. Marka" << std::endl;
+	std::cout << "2. Model" << std::endl;
+	std::cout << "3. Rocznik" << std::endl;
+	std::cout << "4. Pojemnosc" << std::endl;
+	std::cout << "5. Przebieg" << std::endl;
+	std::cout << "6. Typ skrzyni biegow" << std::endl;
+	int parametr;
+	parametr = _getch();
+	std::cout << "Wybierz rodzaj warunku: " << std::endl;
+	std::cout << "1. Zawiera" << std::endl;
+	std::cout << "2. Wieksze lub rowne niz" << std::endl;
+	std::cout << "3. Mniejsze niz" << std::endl;
+	int warunek;
+	warunek = _getch();
+	std::string tresc;
+	std::cout << "Podaj tresc warunku: ";
+	std::cin >> tresc;
+	std::stringstream strumienZLiczba(tresc);
+	float liczba;
+	strumienZLiczba >> liczba;
+	char skrzynia;
+	tresc.copy(&skrzynia,1);
+	int licznik = 0;
+	printf("lp  Marka        Model        Rocznik Pojemnosc Przebieg  Skrzynia \n");
+	switch (parametr)
+	{
+	case '1':
+		switch (warunek)
+		{
+		case '1':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].marka.compare(tresc) == 0)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '2':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].marka.compare(tresc) > 0)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '3':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].marka.compare(tresc) < 0)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		default:
+			std::cout << "Podano nieprawidlowy warunek" << std::endl;
+			system("pause");
+			break;
+		}
+		break;
+	case '2':
+		switch (warunek)
+		{
+		case '1':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].model.compare(tresc) == 0)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '2':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].model.compare(tresc) > 0)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '3':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].model.compare(tresc) < 0)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		default:
+			std::cout << "Podano nieprawidlowy warunek" << std::endl;
+			system("pause");
+			break;
+		}
+		break;
+	case '3':
+		switch (warunek)
+		{
+		case '1':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].rocznik == liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '2':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].rocznik >= liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '3':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].rocznik < liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		default:
+			std::cout << "Podano nieprawidlowy warunek" << std::endl;
+			system("pause");
+			break;
+		}
+		break;
+	case '4':
+		switch (warunek)
+		{
+		case '1':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].pojemnosc == liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '2':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].pojemnosc >= liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '3':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].pojemnosc < liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		default:
+			std::cout << "Podano nieprawidlowy warunek" << std::endl;
+			system("pause");
+			break;
+		}
+		break;
+	case '5':
+		switch (warunek)
+		{
+		case '1':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].przebieg == liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '2':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].przebieg >= liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '3':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].przebieg < liczba)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		default:
+			std::cout << "Podano nieprawidlowy warunek" << std::endl;
+			system("pause");
+			break;
+		}
+		break;
+	case '6':
+		switch (warunek)
+		{
+		case '1':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].typSkrzyniBiegow == skrzynia)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '2':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].typSkrzyniBiegow >= skrzynia)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		case '3':
+			for (int i = 0; i < rejestr.size(); i++)
+			{
+				if (rejestr[i].typSkrzyniBiegow < skrzynia)
+				{
+					std::cout.width(3);
+					std::cout << std::left << licznik + 1 << " ";
+					rejestr[i].Wypisz();
+					licznik++;
+				}
+			}
+			system("pause");
+			break;
+		default:
+			std::cout << "Podano nieprawidlowy warunek" << std::endl;
+			system("pause");
+			break;
+		}
+		break;
+	default:
+		std::cout << "Podano nieprawidlowy parametr" << std::endl;
+		system("pause");
+		break;
+	}
+}
+
 int main()
 {
 	bool on = true;
@@ -249,6 +575,7 @@ int main()
 		std::cout << "5. Usun samochod z rejestru" << std::endl;
 		std::cout << "6. Dodaj samochod do rejestru" << std::endl;
 		std::cout << "7. Sortuj wedlug wybranego parametru" << std::endl;
+		std::cout << "8. Wyswietlanie wedlug warunku" << std::endl;
 		std::cout << "ESC. Wyjscie" << std::endl;
 		int numerOperacji = _getch();
 		switch (numerOperacji)
@@ -273,6 +600,9 @@ int main()
 			break;
 		case '7':
 			SortowaniePoWybranymElemencie();
+			break;
+		case '8':
+			WyswietlanieWarunkowe();
 			break;
 		case 27:
 			on = false;
