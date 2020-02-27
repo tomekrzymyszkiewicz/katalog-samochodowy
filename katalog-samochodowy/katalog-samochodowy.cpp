@@ -199,30 +199,30 @@ void SortowaniePoWybranymElemencie()
 	std::cout << "5. Przebieg" << std::endl;
 	std::cout << "6. Typ skrzyni biegow" << std::endl;
 	int parametr;
-	std::cin >> parametr;
+	parametr = _getch();
 	switch (parametr)
 	{
-	case 1:
+	case '1':
 		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poMarce);
 		std::cout << "Posortowano" << std::endl;
 		break;
-	case 2:
+	case '2':
 		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poModelu);
 		std::cout << "Posortowano" << std::endl;
 		break;
-	case 3:
+	case '3':
 		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poRoczniku);
 		std::cout << "Posortowano" << std::endl;
 		break;
-	case 4:
+	case '4':
 		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poPojemnosci);
 		std::cout << "Posortowano" << std::endl;
 		break;
-	case 5:
+	case '5':
 		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poPrzebiegu);
 		std::cout << "Posortowano" << std::endl;
 		break;
-	case 6:
+	case '6':
 		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poSkrzyni);
 		std::cout << "Posortowano" << std::endl;
 		break;
@@ -231,9 +231,6 @@ void SortowaniePoWybranymElemencie()
 		break;
 	}
 	system("pause");
-
-
-
 }
 
 void WyswietlanieWarunkowe()
@@ -610,9 +607,6 @@ int main()
 		default:
 			break;
 		}
-		
 	} while (on);
-
 	return 0;
 }
-
