@@ -32,15 +32,30 @@ public:
 			
 		}
 		//DEFINICJE SORTOWANIA
-		static bool poMarce(Pojazd & A, Pojazd & B) 
+		static bool poMarce(Pojazd& A, Pojazd& B) 
 		{
 			return A.marka < B.marka;
 		}
-		static bool poModelu(Pojazd & A, Pojazd & B)
+		static bool poModelu(Pojazd& A, Pojazd& B)
 		{
 			return A.model < B.model;
 		}
-		static bool poRoczniku(Pojazd  )
+		static bool poRoczniku(Pojazd& A, Pojazd& B)
+		{
+			return A.rocznik < B.rocznik;
+		}
+		static bool poPojemnosci(Pojazd& A, Pojazd& B)
+		{
+			return A.pojemnosc < B.pojemnosc;
+		}
+		static bool poPrzebiegu(Pojazd& A, Pojazd& B)
+		{
+			return A.przebieg < B.przebieg;
+		}
+		static bool poSkrzyni(Pojazd& A, Pojazd& B)
+		{
+			return A.typSkrzyniBiegow < B.typSkrzyniBiegow;
+		}
 };
 
 std::vector <Pojazd> rejestr;
@@ -178,17 +193,36 @@ void SortowaniePoWybranymElemencie()
 	std::cout << "Wybierz parametr wedlug ktorego chcesz posortowac dane:" << std::endl;
 	std::cout << "1. Marka" << std::endl;
 	std::cout << "2. Model" << std::endl;
-	std::cout << "3. Pojemnosc" << std::endl;
-	std::cout << "4. Przebieg" << std::endl;
-	std::cout << "5. Rocznik" << std::endl;
+	std::cout << "3. Rocznik" << std::endl;
+	std::cout << "4. Pojemnosc" << std::endl;
+	std::cout << "5. Przebieg" << std::endl;
 	std::cout << "6. Typ skrzyni biegow" << std::endl;
 	int parametr;
 	std::cin >> parametr;
-	system("cls");
 	switch (parametr)
 	{
 	case 1:
 		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poMarce);
+		std::cout << "Posortowano" << std::endl;
+		break;
+	case 2:
+		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poModelu);
+		std::cout << "Posortowano" << std::endl;
+		break;
+	case 3:
+		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poRoczniku);
+		std::cout << "Posortowano" << std::endl;
+		break;
+	case 4:
+		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poPojemnosci);
+		std::cout << "Posortowano" << std::endl;
+		break;
+	case 5:
+		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poPrzebiegu);
+		std::cout << "Posortowano" << std::endl;
+		break;
+	case 6:
+		std::sort(rejestr.begin(), rejestr.end(), Pojazd::poSkrzyni);
 		std::cout << "Posortowano" << std::endl;
 		break;
 	default:
