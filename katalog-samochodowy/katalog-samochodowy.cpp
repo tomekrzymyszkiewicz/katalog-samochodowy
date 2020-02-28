@@ -30,7 +30,6 @@ public:
 			std::cout << std::left << przebieg << " ";
 			std::cout.width(7);
 			std::cout << std::left << typSkrzyniBiegow << std::endl;
-			
 		}
 		//DEFINICJE SORTOWANIA
 		static bool poMarce(Pojazd& A, Pojazd& B) 
@@ -124,7 +123,6 @@ void ZapiszZapisKataloguZPliku()
 		}
 	plik.close();
 	system("pause");
-
 }
 
 void WypisanieKonkretnegoSamochodu()
