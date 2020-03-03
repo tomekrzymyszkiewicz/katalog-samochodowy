@@ -10,12 +10,14 @@
 class Pojazd
 {
 public:
+		//ZMIENNE KLASY
 		std::string marka;
 		std::string model;
 		int rocznik;
 		float pojemnosc;
 		int przebieg;
 		char typSkrzyniBiegow;
+		//KONSTRUKTOR
 		Pojazd() 
 		{
 			marka = "Marka";
@@ -25,6 +27,7 @@ public:
 			przebieg = 0;
 			typSkrzyniBiegow = 'B';
 		}
+		//WYPISANIE OBIEKTU NA KONSOLĘ
 		void Wypisz()
 		{
 			std::cout.width(12);
@@ -40,6 +43,7 @@ public:
 			std::cout.width(7);
 			std::cout << std::left << typSkrzyniBiegow << std::endl;
 		}
+		//PRZECIĄŻENIE OPERATORA '=' W CELU PRZEKOPIOWANIA ZAWARTOŚCI OBIEKTU
 		const Pojazd& operator=(const Pojazd& pojazd)
 		{
 			this->marka = pojazd.marka;
@@ -77,8 +81,10 @@ public:
 		}
 };
 
+//UTWORZENIE WEKTORA PRZECHOWUJĄCEGO OBIEKTY
 std::vector <Pojazd> rejestr;
 
+//WYPISANIE PEŁNEJ LISTY POJAZDÓW ZNAJDUJĄCYCH SIĘ W WEKTORZE (WCZYTANYCH Z PLIKU)
 void WypisanieListySamochodow()
 {
 	system("cls");
@@ -92,6 +98,7 @@ void WypisanieListySamochodow()
 	system("pause");
 }
 
+//WCZYTANIE ZAWARTOŚCI PLIKU DO WEKTORA
 void WczytajZapisKataloguZPliku()
 {
 	std::ifstream plik;
@@ -107,7 +114,7 @@ void WczytajZapisKataloguZPliku()
 			plik >> (*nowyPojazd).przebieg;
 			plik >> (*nowyPojazd).rocznik;
 			plik >> (*nowyPojazd).typSkrzyniBiegow;
-			if((*nowyPojazd).marka != "" && (*nowyPojazd).model != "" && (*nowyPojazd).pojemnosc != NULL && (*nowyPojazd).przebieg != NULL && (*nowyPojazd).rocznik != NULL && (*nowyPojazd).typSkrzyniBiegow == 'A' || (*nowyPojazd).typSkrzyniBiegow == 'M')
+			if((*nowyPojazd).marka != "" && (*nowyPojazd).model != "" && (*nowyPojazd).pojemnosc != NULL && (*nowyPojazd).przebieg != NULL && (*nowyPojazd).rocznik != NULL && ((*nowyPojazd).typSkrzyniBiegow == 'A' || (*nowyPojazd).typSkrzyniBiegow == 'M'))
 			rejestr.push_back(*nowyPojazd);
 			delete nowyPojazd;
 		}
@@ -117,8 +124,10 @@ void WczytajZapisKataloguZPliku()
 	system("pause");
 }
 
+//ZAPISANIE ZAWARTOŚCI WEKTORA DO PLIKU
 void ZapiszZapisKataloguZPliku()
 {
+	//KONTORLA, CZY REJESTR NIE JEST PUSTY
 	if (rejestr.size() == 0)
 	{
 		std::cout << "Nie wczytano danych do zapisu" << std::endl;
@@ -141,6 +150,7 @@ void ZapiszZapisKataloguZPliku()
 				plik << (*doZapisania).typSkrzyniBiegow << std::endl;
 				delete doZapisania;
 			}
+			//WYKASOWANIE ZAWARTOŚCI WEKTORA
 			rejestr.clear();
 			std::cout << "Zapisano!" << std::endl;
 		}
@@ -148,6 +158,8 @@ void ZapiszZapisKataloguZPliku()
 	system("pause");
 }
 
+
+//WYPISANIE SAMOCHODU WSKAZANEGO PRZEZ UZYTKOWNIKA
 void WypisanieKonkretnegoSamochodu()
 {
 	int nrPojazdu;
@@ -155,6 +167,7 @@ void WypisanieKonkretnegoSamochodu()
 		system("cls");
 		std::cout << "Podaj nr pojazdu do wypisania: ";
 		std::cin >> nrPojazdu;
+		//SPRWADZENIE CZY AUTO O DANYM NUMERZE ZNAJDUJE SIĘ W WEKTORZE
 		if (nrPojazdu > rejestr.size() || nrPojazdu <= 0)
 		{
 			std::cout << "Nie ma takiego pojazdu w rejestrze!";
@@ -169,6 +182,7 @@ void WypisanieKonkretnegoSamochodu()
 	system("pause");
 }
 
+//USUWANIE Z WEKTORA POJAZDU WSKAZANEGO PRZEZ UZYTKOWNIKA
 void UsuwanieSamochodu()
 {
 	int nrPojazdu;
@@ -187,28 +201,31 @@ void UsuwanieSamochodu()
 	system("pause");
 }
 
+//DODWANIE NOWEGO POJAZDU DO WEKTORA POPRZEZ WCZYTANIE PARAMETRÓW
 void DodajNowySamochod()
 {
-	Pojazd nowyPojazd;
+	Pojazd *nowyPojazd = new Pojazd;
 	system("cls");
 	std::cout << "Dodwanie nowego samochodu" << std::endl;
 	std::cout << "Marka: ";
-	std::cin >> nowyPojazd.marka;
+	std::cin >> (*nowyPojazd).marka;
 	std::cout << "Model: ";
-	std::cin >> nowyPojazd.model;
+	std::cin >> (*nowyPojazd).model;
 	std::cout << "Pojemnosc: ";
-	std::cin >> nowyPojazd.pojemnosc;
+	std::cin >> (*nowyPojazd).pojemnosc;
 	std::cout << "Przebieg: ";
-	std::cin >> nowyPojazd.przebieg;
+	std::cin >> (*nowyPojazd).przebieg;
 	std::cout << "Rocznik: ";
-	std::cin >> nowyPojazd.rocznik;
+	std::cin >> (*nowyPojazd).rocznik;
 	std::cout << "Typ skrzyni biegow (A/M): ";
-	std::cin >> nowyPojazd.typSkrzyniBiegow;
-	rejestr.push_back(nowyPojazd);
+	std::cin >> (*nowyPojazd).typSkrzyniBiegow;
+	rejestr.push_back(*nowyPojazd);
+	delete nowyPojazd;
 	std::cout << "Wczytano prawidlowo pojazd" << std::endl;
 	system("pause");
 }
 
+//SORTOWANIE ZAWARTOŚCI WEKTORA
 void SortowaniePoWybranymElemencie() 
 {
 	system("cls");
@@ -221,6 +238,7 @@ void SortowaniePoWybranymElemencie()
 	std::cout << "6. Typ skrzyni biegow" << std::endl;
 	int parametr;
 	parametr = _getch();
+	//FUNKCJA SWITCH KTÓRA ROZDZIELA PRZYPADKI WEDŁUG TYPU DANYCH PO KTÓRYCH CHCEMY SORTOWAĆ
 	switch (parametr)
 	{
 	case '1':
@@ -254,6 +272,7 @@ void SortowaniePoWybranymElemencie()
 	system("pause");
 }
 
+//WYŚWIETLANIE POJAZDÓW Z WEKTORA KTÓRE SPEŁNIAJĄ WARUNKI ZADANE PRZEZ UZYTKOWNIKA
 void WyswietlanieWarunkowe()
 {
 	system("cls");
