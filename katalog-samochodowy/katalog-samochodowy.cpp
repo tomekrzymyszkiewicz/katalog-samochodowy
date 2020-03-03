@@ -16,6 +16,15 @@ public:
 		float pojemnosc;
 		int przebieg;
 		char typSkrzyniBiegow;
+		Pojazd() 
+		{
+			marka = "Marka";
+			model = "Model";
+			rocznik = 0000;
+			pojemnosc = 0;
+			przebieg = 0;
+			typSkrzyniBiegow = 'B';
+		}
 		void Wypisz()
 		{
 			std::cout.width(12);
@@ -31,8 +40,18 @@ public:
 			std::cout.width(7);
 			std::cout << std::left << typSkrzyniBiegow << std::endl;
 		}
+		const Pojazd& operator=(const Pojazd& pojazd)
+		{
+			this->marka = pojazd.marka;
+			this->model = pojazd.model;
+			this->rocznik = pojazd.rocznik;
+			this->pojemnosc = pojazd.pojemnosc;
+			this->przebieg = pojazd.przebieg;
+			this->typSkrzyniBiegow = pojazd.typSkrzyniBiegow;
+			return *this;
+		}
 		//DEFINICJE SORTOWANIA
-		static bool poMarce(Pojazd& A, Pojazd& B) 
+		static bool poMarce (Pojazd& A, Pojazd& B) 
 		{
 			return A.marka < B.marka;
 		}
@@ -81,15 +100,16 @@ void WczytajZapisKataloguZPliku()
 	{
 		while (!plik.eof())
 		{
-			Pojazd nowyPojazd;
-			plik >> nowyPojazd.marka;
-			plik >> nowyPojazd.model;
-			plik >> nowyPojazd.pojemnosc;
-			plik >> nowyPojazd.przebieg;
-			plik >> nowyPojazd.rocznik;
-			plik >> nowyPojazd.typSkrzyniBiegow;
-			if(nowyPojazd.marka != "" && nowyPojazd.model != "" && nowyPojazd.pojemnosc != NULL && nowyPojazd.przebieg != NULL && nowyPojazd.rocznik != NULL)
-			rejestr.push_back(nowyPojazd);
+			Pojazd *nowyPojazd = new Pojazd;
+			plik >> (*nowyPojazd).marka;
+			plik >> (*nowyPojazd).model;
+			plik >> (*nowyPojazd).pojemnosc;
+			plik >> (*nowyPojazd).przebieg;
+			plik >> (*nowyPojazd).rocznik;
+			plik >> (*nowyPojazd).typSkrzyniBiegow;
+			if((*nowyPojazd).marka != "" && (*nowyPojazd).model != "" && (*nowyPojazd).pojemnosc != NULL && (*nowyPojazd).przebieg != NULL && (*nowyPojazd).rocznik != NULL && (*nowyPojazd).typSkrzyniBiegow == 'A' || (*nowyPojazd).typSkrzyniBiegow == 'M')
+			rejestr.push_back(*nowyPojazd);
+			delete nowyPojazd;
 		}
 		std::cout << "Wczytano!" << std::endl;
 	}
@@ -111,12 +131,15 @@ void ZapiszZapisKataloguZPliku()
 		{
 			for(int i = 0; i < rejestr.size(); i++)
 			{
-				plik << rejestr[i].marka << " ";
-				plik << rejestr[i].model << " ";
-				plik << rejestr[i].pojemnosc << " ";
-				plik << rejestr[i].przebieg << " ";
-				plik << rejestr[i].rocznik << " ";
-				plik << rejestr[i].typSkrzyniBiegow << std::endl;
+				Pojazd *doZapisania = new Pojazd;
+				*doZapisania = rejestr[i];
+				plik << (*doZapisania).marka << " ";
+				plik << (*doZapisania).model << " ";
+				plik << (*doZapisania).pojemnosc << " ";
+				plik << (*doZapisania).przebieg << " ";
+				plik << (*doZapisania).rocznik << " ";
+				plik << (*doZapisania).typSkrzyniBiegow << std::endl;
+				delete doZapisania;
 			}
 			rejestr.clear();
 			std::cout << "Zapisano!" << std::endl;
