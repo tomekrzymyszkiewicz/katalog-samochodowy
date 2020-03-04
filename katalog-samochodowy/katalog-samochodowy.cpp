@@ -283,23 +283,23 @@ void WyswietlanieWarunkowe()
 	std::cout << "4. Pojemnosc" << std::endl;
 	std::cout << "5. Przebieg" << std::endl;
 	std::cout << "6. Typ skrzyni biegow" << std::endl;
-	int parametr;
+	int parametr; //NUMER PARAMETRU
 	parametr = _getch();
 	std::cout << "Wybierz rodzaj warunku: " << std::endl;
 	std::cout << "1. Zawiera" << std::endl;
 	std::cout << "2. Wieksze lub rowne niz" << std::endl;
 	std::cout << "3. Mniejsze niz" << std::endl;
-	int warunek;
+	int warunek; //NUMER RODZAJU WARUNKU
 	warunek = _getch();
-	std::string tresc;
+	std::string tresc; //ZMIENNA NA PARAMETRY TEKSTOWE: MARKA, MODEL
 	std::cout << "Podaj tresc warunku: ";
 	std::cin >> tresc;
 	std::stringstream strumienZLiczba(tresc);
-	float liczba;
+	float liczba; //ZMIANNA NA PARAMETRY LICZBOWE: ROCZNIK, POJEMNOŚĆ, PRZEBIEG
 	strumienZLiczba >> liczba;
-	char skrzynia;
+	char skrzynia; //ZMIANNA NA PARAMETRY ZNAKOWE: TYP SKRZYNI BIEGÓW
 	tresc.copy(&skrzynia,1);
-	int licznik = 0;
+	int licznik = 0; //JEST TO LICZBA PORZĄDKOWA ELEMENTÓW WYPISANYCH KTÓRE SPEŁNIAJĄ WARUNEK
 	printf("lp  Marka        Model        Rocznik Pojemnosc Przebieg  Skrzynia \n");
 	switch (parametr)
 	{
@@ -598,6 +598,7 @@ void WyswietlanieWarunkowe()
 	}
 }
 
+//MENU UŻYTKOWNIKA
 int main()
 {
 	bool on = true;
@@ -641,7 +642,7 @@ int main()
 		case '8':
 			WyswietlanieWarunkowe();
 			break;
-		case 27:
+		case 27: //KOD KLAWISZA ESC
 			on = false;
 			break;
 		default:
