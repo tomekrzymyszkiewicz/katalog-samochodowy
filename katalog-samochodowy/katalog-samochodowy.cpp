@@ -27,32 +27,25 @@ public:
 			przebieg = 0;
 			typSkrzyniBiegow = 'B';
 		}
-		//WYPISANIE OBIEKTU NA KONSOLĘ
-		void Wypisz()
+		//DESTRUKTOR
+		~Pojazd()
+		{}
+		//PRZECIĄŻENIE OPERATORA '<<'
+		friend std::ostream & operator<<(std::ostream & strumienWyjscia, Pojazd & pojazd)
 		{
-			std::cout.width(12);
-			std::cout << std::left << marka << " ";
-			std::cout.width(12);
-			std::cout << std::left << model << " ";
-			std::cout.width(7);
-			std::cout << std::left << rocznik << " ";
-			std::cout.width(9);
-			std::cout << std::left << pojemnosc << " ";
-			std::cout.width(9);
-			std::cout << std::left << przebieg << " ";
-			std::cout.width(7);
-			std::cout << std::left << typSkrzyniBiegow << std::endl;
-		}
-		//PRZECIĄŻENIE OPERATORA '=' W CELU PRZEKOPIOWANIA ZAWARTOŚCI OBIEKTU
-		const Pojazd& operator=(const Pojazd& pojazd)
-		{
-			this->marka = pojazd.marka;
-			this->model = pojazd.model;
-			this->rocznik = pojazd.rocznik;
-			this->pojemnosc = pojazd.pojemnosc;
-			this->przebieg = pojazd.przebieg;
-			this->typSkrzyniBiegow = pojazd.typSkrzyniBiegow;
-			return *this;
+			strumienWyjscia.width(12);
+			strumienWyjscia << std::left << pojazd.marka << " ";
+			strumienWyjscia.width(12);
+			strumienWyjscia << std::left << pojazd.model << " ";
+			strumienWyjscia.width(7);
+			strumienWyjscia << std::left << pojazd.rocznik << " ";
+			strumienWyjscia.width(9);
+			strumienWyjscia << std::left << pojazd.pojemnosc << " ";
+			strumienWyjscia.width(9);
+			strumienWyjscia << std::left << pojazd.przebieg << " ";
+			strumienWyjscia.width(7);
+			strumienWyjscia << std::left << pojazd.typSkrzyniBiegow << std::endl;
+			return strumienWyjscia;
 		}
 		//DEFINICJE SORTOWANIA
 		static bool poMarce (Pojazd& A, Pojazd& B) 
@@ -93,7 +86,7 @@ void WypisanieListySamochodow()
 	{
 		std::cout.width(3);
 		std::cout << std::left << i + 1 << " ";
-		rejestr[i].Wypisz();
+		std::cout << rejestr[i];
 	}
 	system("pause");
 }
@@ -178,7 +171,7 @@ void WypisanieKonkretnegoSamochodu()
 	printf("lp  Marka        Model        Rocznik Pojemnosc Przebieg  Skrzynia \n");
 	std::cout.width(3);
 	std::cout << std::left << nrPojazdu << " ";
-	rejestr[nrPojazdu-1].Wypisz();
+	std::cout << rejestr[nrPojazdu-1];
 	system("pause");
 }
 
@@ -313,7 +306,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -326,7 +319,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -339,7 +332,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -361,7 +354,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -374,7 +367,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -387,7 +380,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -409,7 +402,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -422,7 +415,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -435,7 +428,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -457,7 +450,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -470,7 +463,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -483,7 +476,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -505,7 +498,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -518,7 +511,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -531,7 +524,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -553,7 +546,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -566,7 +559,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
@@ -579,7 +572,7 @@ void WyswietlanieWarunkowe()
 				{
 					std::cout.width(3);
 					std::cout << std::left << licznik + 1 << " ";
-					rejestr[i].Wypisz();
+					std::cout << rejestr[i];
 					licznik++;
 				}
 			}
